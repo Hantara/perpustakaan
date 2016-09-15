@@ -15,102 +15,100 @@ import java.util.HashMap;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
+@Component
 public class KategoriDAO {
-    // Dummy database. Initialize with some dummy values.
-	static HashMap<Integer,Kategori> kategoryIdMap=getkategoryIdMap();
 
+	// Dummy database. Initialize with some dummy values.
+	private static List<Kategori> daftarkategori;
+	{
+		daftarkategori = new ArrayList();
+		daftarkategori.add(new Kategori(1, "K001", "Matematika"));
+		daftarkategori.add(new Kategori(2, "K002", "IPS"));
+		daftarkategori.add(new Kategori(3, "K003", "Komputer"));
+		
+	}
 
-        public KategoriDAO() {
-         super();
-
-         if(kategoryIdMap==null)
-         {
-          kategoryIdMap=new HashMap<Integer,Kategori>();
-         // Creating some objects of Country while initializing
-          Kategori mtk=new Kategori(1, "K001","Matematika");
-          Kategori ipa=new Kategori(2, "K002","IPS");
-          Kategori ips=new Kategori(3, "K003","IPA");
-          Kategori komputer=new Kategori(4, "K004","Komputer");
-
-
-          kategoryIdMap.put(1,mtk);
-          kategoryIdMap.put(4,komputer);
-          kategoryIdMap.put(3,ips);
-          kategoryIdMap.put(2,ipa);
-         }
-        }
-        
-        // Utility method to get max id
-        public static int getMaxId()
-        {   int max=0;
-        for (int id:kategoryIdMap.keySet()) {  
-         if(max<=id)
-          max=id;
-
-        }  
-        return max;
-        }
-        
-        
 	/**
-	 * Return Kategori object for given id from dummy database. Kembalikan daftar kategori
+	 * Returns list of daftarkategori from dummy database.
 	 * 
-	 * 
-	 * @return Kategori object for given id
+	 * @return list of kategori
 	 */
-	public List<Kategori> getAllKategori()
-        {
-         List<Kategori> daftarkategori = new ArrayList<Kategori>(kategoryIdMap.values());
-         return daftarkategori;
-        }
-        
-        
-        /**
-	 * Return Kategori object for given id from dummy database. .
+	public List list() {
+		return daftarkategori;
+	}
+
+	/**
+	 * Return kategori object for given id from dummy database. If kategori is
+	 * not found for id, returns null.
 	 * 
 	 * @param id
-	 *            Kategori id
-	 * @return Kategori object for given id
+	 *            kategori id
+	 * @return kategori object for given id
 	 */
-        public Kategori getKategori(int id)
-        {
-         Kategori kategori= kategoryIdMap.get(id);
-         return kategori;
-        }
-        
-        
-        public Kategori addKategori(Kategori kat)
-        {
-         kat.setKategori_id(getMaxId()+1);
-         kategoryIdMap.put(kat.getKategori_id(), kat);
-         return kat;
-        }
+	public Kategori get(int id) {
 
-        public Kategori updateKategori(Kategori kat)
-        {
-         if(kat.getKategori_id()==0){
-          return null;
-         }
-         kategoryIdMap.put(kat.getKategori_id(), kat);
-         return kat;
+		for (Kategori c : daftarkategori) {
+			if (c.getKategori_id().equals(id)) {
+				return c;
+			}
+		}
+		return null;
+	}
 
-        }
-        
-        public boolean deleteKategori(int id)  
-        {  
-         Kategori kategori = kategoryIdMap.get(id);
-         kategoryIdMap.remove(id);
-         if(kategoryIdMap.get(id) == null){
-             return false;
-         }else{
-             return true;
-         }
-         
-        }  
+	/**
+	 * Create new kategori in dummy database. Updates the id and insert new
+	 * kategori in list.
+	 * 
+	 * @param kategori
+	 *            kategori object
+	 * @return kategori object with updated id
+	 */
+	public Kategori create(Kategori kategori) {
+                kategori.setKategori_id(3);
+		daftarkategori.add(kategori);
+		return kategori;
+	}
 
-        
-        public static HashMap<Integer, Kategori> getkategoryIdMap() {
-            return kategoryIdMap;
-       }
-        
+	/**
+	 * Delete the kategori object from dummy database. If customer not found for
+	 * given id, returns null.
+	 * 
+	 * @param id
+	 *            the kategori id
+	 * @return id of deleted kategori object
+	 */
+	public Integer delete(int id) {
+
+		for (Kategori c : daftarkategori) {
+			if (c.getKategori_id().equals(id)) {
+				daftarkategori.remove(c);
+				return id;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Update the Kategori object for given id in dummy database. If Kategori
+	 * not exists, returns null
+	 * 
+	 * @param id
+	 * @param kategori
+	 * @return kategori object with id
+	 */
+	public Kategori update(int id, Kategori kategori) {
+
+		for (Kategori c : daftarkategori) {
+			if (c.getKategori_id().equals(id)) {
+				kategori.setKategori_id(c.getKategori_id());
+				daftarkategori.remove(c);
+                                daftarkategori.add(kategori);
+				return kategori;
+			}
+		}
+
+		return null;
+	}
+
 }

@@ -6,7 +6,7 @@ package com.mycompany.perpustakaan.config;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
- * Class untuk me inisialisasikan 
+ * Class untuk me inisialisasikan data REST
  * @author Angga Hantara
  */
 
