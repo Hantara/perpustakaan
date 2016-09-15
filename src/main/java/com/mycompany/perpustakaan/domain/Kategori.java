@@ -29,6 +29,8 @@ public class Kategori {
         this.nama_kategori = nama;
 
     }
+    
+    public Kategori (){}
 
     /**
      * @return the kategori_id

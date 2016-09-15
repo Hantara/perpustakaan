@@ -34,7 +34,7 @@ public class KategoriRestController {
     
     
     @GetMapping("/daftarkategori")
-    public List getKategori() {
+    public List getKategoris() {
         return kategoridao.list();
     }
 
