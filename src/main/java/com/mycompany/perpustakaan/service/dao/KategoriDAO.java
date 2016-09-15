@@ -58,7 +58,7 @@ public class KategoriDAO {
 	 * 
 	 * @return Kategori object for given id
 	 */
-	public List<Kategori> getAllCountries()
+	public List<Kategori> getAllKategori()
         {
          List<Kategori> daftarkategori = new ArrayList<Kategori>(kategoryIdMap.values());
          return daftarkategori;
@@ -78,14 +78,15 @@ public class KategoriDAO {
          return kategori;
         }
         
-        public Kategori addCountry(Kategori kat)
+        
+        public Kategori addKategori(Kategori kat)
         {
          kat.setKategori_id(getMaxId()+1);
          kategoryIdMap.put(kat.getKategori_id(), kat);
          return kat;
         }
 
-        public Kategori updateCountry(Kategori kat)
+        public Kategori updateKategori(Kategori kat)
         {
          if(kat.getKategori_id()==0){
           return null;
@@ -94,6 +95,19 @@ public class KategoriDAO {
          return kat;
 
         }
+        
+        public boolean deleteKategori(int id)  
+        {  
+         Kategori kategori = kategoryIdMap.get(id);
+         kategoryIdMap.remove(id);
+         if(kategoryIdMap.get(id) == null){
+             return false;
+         }else{
+             return true;
+         }
+         
+        }  
+
         
         public static HashMap<Integer, Kategori> getkategoryIdMap() {
             return kategoryIdMap;
