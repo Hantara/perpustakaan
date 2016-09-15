@@ -12,33 +12,42 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <glassfish.embedded-static-shell.jar>/glassfish-4.0/glassfish/lib/embedded/glassfish-embedded-static-shell.jar</glassfish.embedded-static-shell.jar>
   </properties>
 
   <dependencies>
       <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-core</artifactId>
-        <version>4.3.1.RELEASE</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-webmvc</artifactId>
-        <version>4.3.1.RELEASE</version>
-    </dependency>
-   
-    <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-jpa</artifactId>
-        <version>1.10.1.RELEASE</version>
-    </dependency>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-static-shell</artifactId>
+            <version>4.0</version>
+            <scope>system</scope>
+            <systemPath>${glassfish.embedded-static-shell.jar}</systemPath>
+        </dependency>
+                    <dependency>
+                      <groupId>org.springframework</groupId>
+                      <artifactId>spring-core</artifactId>
+                      <version>4.3.1.RELEASE</version>
+                  </dependency>
+                  <dependency>
+                      <groupId>org.springframework</groupId>
+                      <artifactId>spring-webmvc</artifactId>
+                      <version>4.3.1.RELEASE</version>
+                  </dependency>
 
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
+                  <dependency>
+                      <groupId>org.springframework.data</groupId>
+                      <artifactId>spring-data-jpa</artifactId>
+                      <version>1.10.1.RELEASE</version>
+                  </dependency>
+
+                  <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <version>3.8.1</version>
+                    <scope>test</scope>
+                  </dependency>
+                  <dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.7.5</version>
